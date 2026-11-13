@@ -353,7 +353,7 @@
    - SPEAKERS: agrega `photo: 'ruta/foto.jpg'` y completa `bio` cuando la tengas.
    - RSVP_ENDPOINT: URL que recibe los registros (ver más abajo).
    ===================================================================== */
-const RSVP_ENDPOINT = ""; // Ej: "https://tu-webhook.com/rsvp". Vacío = modo demo (no guarda en ningún servidor).
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbynLZPy2YEivqtn6x8NJQZHNyzlCwhz-vTtZMfeV7XHILbAyA1q9jJBPdcKawbMIcqddw/exec"; // Ej: "https://tu-webhook.com/rsvp". Vacío = modo demo (no guarda en ningún servidor).
 
 const ICONS = {
   cafe:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.25em" height="1.25em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>', restaurant:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.25em" height="1.25em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/></svg>', bar:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.25em" height="1.25em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21 5V3H3v2l8 9v5H6v2h12v-2h-5v-5l8-9zM7.43 7L5.66 5h12.69l-1.78 2H7.43z"/></svg>', clock:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.25em" height="1.25em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>'
@@ -504,7 +504,7 @@ form.addEventListener('submit', async e => {
   submitBtn.disabled = true; submitBtn.textContent = 'Confirmando…';
   try {
     if (RSVP_ENDPOINT) {
-      const res = await fetch(RSVP_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(data) });
+      const res = await fetch(RSVP_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
       if (!res.ok) throw new Error('HTTP ' + res.status);
     } else {
       await new Promise(r => setTimeout(r, 900)); // modo demo
